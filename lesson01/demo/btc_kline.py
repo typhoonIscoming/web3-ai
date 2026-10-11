@@ -32,7 +32,7 @@ def fetch_binance(days: int) -> pd.DataFrame:
                  "quote_vol", "trades", "taker_base", "taker_quote", "ignore"],  # Binance 返回的字段顺序
     )
     df.index = pd.to_datetime(df["ts"], unit="ms")  # 开盘时间作为时间索引
-    return df[["Open", "High", "Low", "Close", "Volume"]].astype(float)  # 只保留 OHLCV 并转为数值
+    return df.loc[:, ["Open", "High", "Low", "Close", "Volume"]].astype(float)  # 只保留 OHLCV 并转为数值
 
 
 def fetch_okx(days: int) -> pd.DataFrame:
